@@ -1,3 +1,9 @@
+.idea
+.settings
+.project
+.checkstyle
+.iml
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
