@@ -10,6 +10,11 @@
 	<name>Large-scale Trajectory Mining </name>
 	<description>A large-scale trajectory mining system under Apache Spark</description>
 
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.spark</groupId>

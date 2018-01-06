@@ -23,6 +23,7 @@ public class MainSP {
 	double T = 1.0;
 	int O = 1;
 	int clique_miner_partitions = 486;
+	String master = null, input = null;
 	
 	if(args.length > 0) {
 	    for(String arg : args) {
@@ -41,6 +42,10 @@ public class MainSP {
 		    T = Double.parseDouble(arg.split("=")[1]);
 		} else if(arg.startsWith("o=") || arg.startsWith("O=")) {
 		    O = Integer.parseInt(arg.split("=")[1]);
+		} else if(arg.startsWith("master=") || arg.startsWith("Master=")) {
+			master = arg.split("=")[1];
+		} else if(arg.startsWith("input=") || arg.startsWith("Input=")) {
+			input = arg.split("=")[1];
 		}
 	    }
 	} else {
@@ -50,13 +55,13 @@ public class MainSP {
 	    System.out.println("Missing values are replaced by defaults!");
 	    System.exit(-1);
 	}
-	
-	String hdfs_input = AppProperties.getProperty("hdfs_input");
+	String hdfs_input = input;
+//	String hdfs_output = output;
 	String name = "Apriori-K" + K + "-L" + L + "-M" + M + "-G" + G + "-File"+hdfs_input;
 	Logger.getLogger("org").setLevel(Level.OFF);
 	Logger.getLogger("aka").setLevel(Level.OFF);
 	
-	SparkConf conf = new SparkConf().setAppName(name);
+	SparkConf conf = new SparkConf().setAppName(name).setMaster(master);
 	JavaSparkContext context = new JavaSparkContext(conf);
 	//Load input data directly from HDFS
 	JavaRDD<SnapshotClusters> CLUSTERS = context.objectFile(hdfs_input, clique_miner_partitions);
@@ -85,6 +90,7 @@ public class MainSP {
 	    System.out.println(each_output);
 	}
 	context.close();
+	System.out.println("===============FINISHED SUCCESSFULLY=========================================================");
     }
 }
 class ObjectSampler implements Function<SnapshotClusters, SnapshotClusters> {
