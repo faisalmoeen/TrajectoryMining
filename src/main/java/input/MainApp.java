@@ -73,6 +73,7 @@ public class MainApp {
 				eps, minpt);
 		CLUSTERS.saveAsObjectFile(hdfs_out);
 		context.close();
+		System.out.println("===============FINISHED SUCCESSFULLY=========================================================");
 	}
 
 }
