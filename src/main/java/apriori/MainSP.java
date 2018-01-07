@@ -38,11 +38,14 @@ public class MainSP {
 		    G = Integer.parseInt(arg.split("=")[1]);
 		} else if(arg.startsWith("c=")|| arg.startsWith("C=")) {
 		    clique_miner_partitions = Integer.parseInt(arg.split("=")[1]);
-		} else if(arg.startsWith("t=") || arg.startsWith("T=")) {
+		}
+		else if(arg.startsWith("t=") || arg.startsWith("T=")) {
 		    T = Double.parseDouble(arg.split("=")[1]);
-		} else if(arg.startsWith("o=") || arg.startsWith("O=")) {
+		}
+		else if(arg.startsWith("o=") || arg.startsWith("O=")) {
 		    O = Integer.parseInt(arg.split("=")[1]);
-		} else if(arg.startsWith("master=") || arg.startsWith("Master=")) {
+		}
+		else if(arg.startsWith("master=") || arg.startsWith("Master=")) {
 			master = arg.split("=")[1];
 		} else if(arg.startsWith("input=") || arg.startsWith("Input=")) {
 			input = arg.split("=")[1];
@@ -51,7 +54,7 @@ public class MainSP {
 	} else {
 	    System.out.println("No commandline arguments found. Using default values instead");
 	    System.out.println("Usage: .bin/spark-submit --class apriori.MainApp ~/TrajectoryMining/TrajectoryMining-0.0.1-SNAPSHOT-jar-with-dependencies.jar " +
-	    		"k=40 l=10 g=3 h=195 e=15 p=10 c=115 s=115");
+	    		"k=40 l=10 m= 10 g=3 c=115");
 	    System.out.println("Missing values are replaced by defaults!");
 	    System.exit(-1);
 	}

@@ -37,7 +37,7 @@ public class BasicClustering implements ClusteringMethod {
     
     private DBSCANWrapper dwr;
     private int pars;
-    public BasicClustering(int eps, int minpts, int M, int pars, int earth) {
+    public BasicClustering(double eps, int minpts, int M, int pars, int earth) {
 	this.pars = pars;
 	dwr = new DBSCANWrapper(eps, minpts, M, earth);
     }

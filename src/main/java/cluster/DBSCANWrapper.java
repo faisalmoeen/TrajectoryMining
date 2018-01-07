@@ -14,11 +14,11 @@ import util.DBSCANClustering;
 public class DBSCANWrapper implements
 	Function<Tuple2<Integer, SnapShot>, SnapshotClusters> {
     private static final long serialVersionUID = 3562163124094087749L;
-    private int eps, minPts;
-    private int M;
+    private double eps;
+    private int M, minPts;
     private int earth;
 
-    public DBSCANWrapper(int ieps, int iminPts, int m, int earth) {
+    public DBSCANWrapper(double ieps, int iminPts, int m, int earth) {
 	eps = ieps;
 	minPts = iminPts;
 	M = m;

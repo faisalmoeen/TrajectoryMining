@@ -23,7 +23,8 @@ public class MainApp {
 
 	public static void main(String[] args) {
 		int hdfs_partitions = 87;
-		int eps = 15, minpt = 10 ;
+		double eps = 15;
+		int minpt = 10 ;
 		int snapshot_partitions = 87;
 		int M = minpt;
 		int earth = 0;
@@ -34,9 +35,10 @@ public class MainApp {
 				if(arg.startsWith("h=")|| arg.startsWith("H=")) {
 					hdfs_partitions = Integer.parseInt(arg.split("=")[1]);
 				} else if(arg.startsWith("e=")|| arg.startsWith("E=")) {
-					eps = Integer.parseInt(arg.split("=")[1]);
-				} else if(arg.startsWith("p=")|| arg.startsWith("P=")) {
+					eps = Double.parseDouble(arg.split("=")[1]);
+				} else if(arg.startsWith("m=")|| arg.startsWith("M=")) {
 					minpt = Integer.parseInt(arg.split("=")[1]);
+					M = minpt;
 				} else if(arg.startsWith("s=")|| arg.startsWith("S=")) {
 					snapshot_partitions = Integer.parseInt(arg.split("=")[1]);
 				} else if(arg.startsWith("r=") || arg.startsWith("R=")) {
@@ -59,7 +61,7 @@ public class MainApp {
 		}
 		String hdfs_input = input;
 		String hdfs_output = output;
-		String name = String.format("DBSCAN-E=%d-P=%d", eps, minpt);
+		String name = String.format("DBSCAN-E=%f-PM=%d", eps, minpt);
 		Logger.getLogger("org").setLevel(Level.OFF);
 		Logger.getLogger("aka").setLevel(Level.OFF);
 
@@ -69,7 +71,7 @@ public class MainApp {
 		JavaRDD<String> inputRDD = context.textFile(hdfs_input, hdfs_partitions);
 		ClusteringMethod cm = new BasicClustering(eps, minpt, M, snapshot_partitions, earth);
 		JavaRDD<SnapshotClusters> CLUSTERS = cm.doClustering(inputRDD);
-		String hdfs_out = String.format(hdfs_output + "/clusters-e%d-p%d",
+		String hdfs_out = String.format(hdfs_output + "/clusters-e%f-m%d",
 				eps, minpt);
 		CLUSTERS.saveAsObjectFile(hdfs_out);
 		context.close();
