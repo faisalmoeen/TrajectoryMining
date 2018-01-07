@@ -1,8 +1,10 @@
-.idea
-.settings
-.project
-.checkstyle
-.iml
+*.idea
+*.settings
+*.project
+*.checkstyle
+*.iml
+results.csv
+dependency-reduced-pom.xml
 
 # Windows image file caches
 Thumbs.db
