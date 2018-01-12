@@ -1,8 +1,10 @@
 # TrajectoryMining
-This project is about discovering General Co-movement Pattern from Large-scale Trajectories.
 
-To facililate the large-scale needs, we use Apache-Spark as our solution platform. 
-The current version of the project serves as the experimentary codes for our paper that were be published in VLDB'17. 
+This is the fork of the SPARE framework which discovers General Co-movement Patterns from Large-scale Trajectories.
+
+The original repository serves the experimentary codes for the paper that was published in VLDB'17. 
+
+This repository improves upon the original code base and adds the experimental harness and some documentation.
 
 ## Clustering
 ```
