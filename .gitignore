@@ -5,6 +5,9 @@
 *.iml
 results.csv
 dependency-reduced-pom.xml
+clustering_exps.txt
+spare_exps.txt
+screen*
 
 # Windows image file caches
 Thumbs.db
