@@ -66,7 +66,7 @@ public class MainApp {
 		Logger.getLogger("aka").setLevel(Level.OFF);
 
 
-		SparkConf conf = new SparkConf().setAppName(name).setMaster(master);
+		SparkConf conf = new SparkConf().setAppName(name);
 		JavaSparkContext context = new JavaSparkContext(conf);
 		JavaRDD<String> inputRDD = context.textFile(hdfs_input, hdfs_partitions);
 		ClusteringMethod cm = new BasicClustering(eps, minpt, M, snapshot_partitions, earth);
