@@ -7,6 +7,7 @@ SPARE_EXP_RESULT=spare_exps.txt
 CORES=(16 14 12 10 8 6 4 2)
 CLUSTERING_IN_DIR=/user/faisal/datasets
 CLUSTERING_OUT_DIR=/user/faisal/output
+JAR=target/TrajectoryMining-0.0.1-SNAPSHOT.jar
 
 
 #===============================================Clustering Phase============================================
@@ -34,7 +35,7 @@ do
     echo $dataset,${e},${m}
     hdfs dfs -rm -r ${CLUSTERING_OUT_DIR}/${dataset}/clusters-e${e}-m${m}
     spark-submit --master yarn --deploy-mode client --executor-cores ${core} \
-        jars/TrajectoryMining-0.0.1-SNAPSHOT.jar input.MainApp e=${e} m=${m} \
+        --class input.MainApp ${JAR} e=${e} m=${m} \
         input=${CLUSTERING_IN_DIR}/${dataset} output=${CLUSTERING_OUT_DIR}/${dataset}
     end=$(date +%s%3N)
     echo $dataset,${e},${m},${core},$(($end-$start))
@@ -79,7 +80,7 @@ do
     start=$(date +%s%3N)
     echo ${dataset},${k},${l},${m},${g},${c}
     spark-submit --master yarn --deploy-mode client --executor-cores ${core} \
-        jars/TrajectoryMining-0.0.1-SNAPSHOT.jar apriori.MainSP k=${k} l=${l} m=${m} g=${g} c=${c}\
+        --class apriori.MainSP ${JAR} k=${k} l=${l} m=${m} g=${g} c=${c}\
         input=${CLUSTERING_OUT_DIR}/${dataset}/clusters-e${e}-m${m}
     end=$(date +%s%3N)
     echo ${dataset},${k},${l},${m},${g},${c},$(($end-$start))
