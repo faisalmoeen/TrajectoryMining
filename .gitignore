@@ -3,7 +3,8 @@
 *.project
 *.checkstyle
 *.iml
-results.csv
+*results.csv
+*exps.txt
 dependency-reduced-pom.xml
 
 # Windows image file caches
