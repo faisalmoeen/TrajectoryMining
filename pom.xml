@@ -11,8 +11,13 @@
 	<description>A large-scale trajectory mining system under Apache Spark</description>
 
 	<properties>
+<<<<<<< HEAD
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+=======
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+>>>>>>> 981a3db08fcadd070f60f138fcb50b173504577e
 	</properties>
 
 	<dependencies>
@@ -65,8 +70,13 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
+<<<<<<< HEAD
 					<source>8</source>
 					<target>8</target>
+=======
+					<source>7</source>
+					<target>7</target>
+>>>>>>> 981a3db08fcadd070f60f138fcb50b173504577e
 				</configuration>
 			</plugin>
 			<!--<plugin>-->
@@ -117,4 +127,8 @@
 			</plugin>
 		</plugins>
 	</build>
+<<<<<<< HEAD
 </project>
+=======
+</project>
+>>>>>>> 981a3db08fcadd070f60f138fcb50b173504577e

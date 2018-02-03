@@ -64,7 +64,11 @@ public class MainSP {
 	Logger.getLogger("org").setLevel(Level.OFF);
 	Logger.getLogger("aka").setLevel(Level.OFF);
 	
+<<<<<<< HEAD
 	SparkConf conf = new SparkConf().setAppName(name).setMaster(master);
+=======
+	SparkConf conf = new SparkConf().setAppName(name);
+>>>>>>> 981a3db08fcadd070f60f138fcb50b173504577e
 	JavaSparkContext context = new JavaSparkContext(conf);
 	//Load input data directly from HDFS
 	JavaRDD<SnapshotClusters> CLUSTERS = context.objectFile(hdfs_input, clique_miner_partitions);
