@@ -3,7 +3,8 @@
 *.project
 *.checkstyle
 *.iml
-results.csv
+*results.csv
+*exps.txt
 dependency-reduced-pom.xml
 clustering_exps.txt
 spare_exps.txt
