@@ -1,0 +1,4 @@
+dataset,e,m,cores,time(ms)
+trucks-d,0.000060,6,48,69531
+brink-d,0.000060,6,48,753978
+tdrive-d,0.000060,6,48,12375976

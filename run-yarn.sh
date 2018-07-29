@@ -4,11 +4,12 @@
 DATASETS=(trucks-d brink-d tdrive-d)
 CLUSTERING_EXP_RESULT=clustering_exps.txt
 SPARE_EXP_RESULT=spare_exps.txt
-CORES=(16 14 12 10 8 6 4 2)
+#CORES=(16 14 12 10 8 6 4 2)
+CORES=(16)
 CLUSTERING_IN_DIR=/user/faisal/datasets
 CLUSTERING_OUT_DIR=/user/faisal/output
 JAR=target/TrajectoryMining-0.0.1-SNAPSHOT.jar
-
+MEM=2500m
 
 #===============================================Clustering Phase============================================
 
@@ -34,7 +35,7 @@ do
     start=$(date +%s%3N)
     echo $dataset,${e},${m}
     hdfs dfs -rm -r ${CLUSTERING_OUT_DIR}/${dataset}/clusters-e${e}-m${m}
-    spark-submit --master yarn --deploy-mode client --executor-cores ${core} \
+    spark-submit --master yarn --deploy-mode client --executor-cores 1 --num-executors ${core} --executor-memory ${MEM} \
         --class input.MainApp ${JAR} e=${e} m=${m} \
         input=${CLUSTERING_IN_DIR}/${dataset} output=${CLUSTERING_OUT_DIR}/${dataset}
     end=$(date +%s%3N)
@@ -52,7 +53,8 @@ rm ${SPARE_EXP_RESULT}
 touch ${SPARE_EXP_RESULT}
 echo "dataset,k,l,m,g,c,cores,time(ms)" >> $SPARE_EXP_RESULT
 
-CORES=(1 2 3 4 5 6 7 8)
+#CORES=(1 2 3 4 5 6 7 8)
+#CORES=(32)
 #K=(90 180 270 360)
 K=(180)
 L=(180) #length of local consecutive pattern
@@ -79,7 +81,7 @@ for core in ${CORES[@]}
 do
     start=$(date +%s%3N)
     echo ${dataset},${k},${l},${m},${g},${c}
-    spark-submit --master yarn --deploy-mode client --executor-cores ${core} \
+    spark-submit --master yarn --deploy-mode client --executor-cores 1 --num-executors ${core} --executor-memory ${MEM} \
         --class apriori.MainSP ${JAR} k=${k} l=${l} m=${m} g=${g} c=${c}\
         input=${CLUSTERING_OUT_DIR}/${dataset}/clusters-e${e}-m${m}
     end=$(date +%s%3N)
